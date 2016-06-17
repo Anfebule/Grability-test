@@ -16,7 +16,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class cuboBean {
     
-    private String textoIngreso;
+    private String textoIngreso = "";
     private String textoResultado = "";
 
     public String getTextoResultado() {
@@ -39,7 +39,7 @@ public class cuboBean {
         String[] textoEnLineas = textoIngreso.split("\\n");
         int testCases = Integer.parseInt(textoEnLineas[0].trim());
         int testCasesCounter = 0;
-        String[] dimAndQuery = textoEnLineas[1].split("\\s");
+        String[] dimAndQuery ;
         
         Cubo cubo = new Cubo();
         
@@ -60,7 +60,7 @@ public class cuboBean {
                     cubo.updateQuery(Integer.parseInt(split[1].trim()), Integer.parseInt(split[2].trim()), Integer.parseInt(split[3].trim()), Integer.parseInt(split[4].trim()));
                 } else if (query.startsWith("QUERY")){
                     textoResultado += cubo.query(Integer.parseInt(split[1].trim()), Integer.parseInt(split[2].trim()), Integer.parseInt(split[3].trim()), Integer.parseInt(split[4].trim()), Integer.parseInt(split[5].trim()), Integer.parseInt(split[6].trim()));
-                    textoResultado += System.getProperty("line.separator");
+                    textoResultado += "\n";
                 } else {
                     textoResultado = "La cantidad de consultas especificada no fue correcta";
                 }
