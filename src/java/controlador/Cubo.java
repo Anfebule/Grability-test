@@ -5,16 +5,21 @@
  */
 package controlador;
 
+import org.junit.Test;
+
 /**
  *
  * @author Ing-0-0013
  */
 public class Cubo {
     
-    int m[][][];
+    static int m[][][];
     
-    public Cubo(int dimensiones){
+    public Cubo(){
         
+    }
+    
+    public boolean inicializarCubo(int dimensiones){
         m = new int[dimensiones][dimensiones][dimensiones];
         
         for(int i=0; i<dimensiones; i++){
@@ -24,10 +29,12 @@ public class Cubo {
                 }
             }
         }
+        return true;
     }
     
-    public void updateQuery(int x, int y, int z,int w){
+    public boolean updateQuery(int x, int y, int z,int w){
         m[x][y][z] = w;
+        return true;
     }
     
     public int query(int x1, int x2, int x3, int y1, int y2, int y3){
