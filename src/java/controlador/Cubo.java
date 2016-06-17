@@ -9,6 +9,7 @@ package controlador;
  *
  * @author Ing-0-0013
  */
+
 public class Cubo {
     
     static int m[][][];
@@ -18,6 +19,7 @@ public class Cubo {
     }
     
     public boolean inicializarCubo(int dimensiones){
+        dimensiones += 1;
         m = new int[dimensiones][dimensiones][dimensiones];
         
         for(int i=0; i<dimensiones; i++){
