@@ -36,6 +36,7 @@ public class cuboBean {
     }
     
     public void resolver(){
+        textoResultado = "";
         String[] textoEnLineas = textoIngreso.split("\\n");
         int testCases = Integer.parseInt(textoEnLineas[0].trim());
         int testCasesCounter = 0;
