@@ -7,9 +7,16 @@
     </h:head>
     <h:body>
         <b>Ingresa el texto a procesar</b>
+        <br></br>
         <h:form>
-            <h:inputText value="#{cuboBean.textoIngreso}"/>
+            <h:inputTextarea value="#{cuboBean.textoIngreso}" required="true" requiredMessage="El campo no puede estar vacío" />
+            <br></br>
             <h:commandButton value="Aceptar" action="#{cuboBean.resolver()}" />
+            <br></br>
+            <br></br>
+            El resultado es:
+            <br></br>
+            <h:outputText value="#{cuboBean.textoResultado}"/>
         </h:form>
     </h:body>
 </html>

@@ -17,6 +17,15 @@ import javax.faces.bean.SessionScoped;
 public class cuboBean {
     
     private String textoIngreso;
+    private String textoResultado = "";
+
+    public String getTextoResultado() {
+        return textoResultado;
+    }
+
+    public void setTextoResultado(String textoResultado) {
+        this.textoResultado = textoResultado;
+    }
 
     public String getTextoIngreso() {
         return textoIngreso;
@@ -27,7 +36,37 @@ public class cuboBean {
     }
     
     public void resolver(){
-        String[] textoEnLineas = textoIngreso.split("\n");
+        String[] textoEnLineas = textoIngreso.split("\\n");
+        int testCases = Integer.parseInt(textoEnLineas[0].trim());
+        int testCasesCounter = 0;
+        String[] dimAndQuery = textoEnLineas[1].split("\\s");
         
+        Cubo cubo = new Cubo();
+        
+        String query;
+        int contadorLineas = 1;
+        
+        while (testCasesCounter < testCases){
+            
+            dimAndQuery = textoEnLineas[contadorLineas].split("\\s");
+            cubo.inicializarCubo(Integer.parseInt(dimAndQuery[0].trim()));
+            contadorLineas += 1;
+            
+            for(int i=0; i<Integer.parseInt(dimAndQuery[1].trim()); i++){
+                query = textoEnLineas[contadorLineas];
+                String[] split = query.split("\\s");
+
+                if(query.startsWith("UPDATE")){
+                    cubo.updateQuery(Integer.parseInt(split[1].trim()), Integer.parseInt(split[2].trim()), Integer.parseInt(split[3].trim()), Integer.parseInt(split[4].trim()));
+                } else if (query.startsWith("QUERY")){
+                    textoResultado += cubo.query(Integer.parseInt(split[1].trim()), Integer.parseInt(split[2].trim()), Integer.parseInt(split[3].trim()), Integer.parseInt(split[4].trim()), Integer.parseInt(split[5].trim()), Integer.parseInt(split[6].trim()));
+                    textoResultado += System.getProperty("line.separator");
+                } else {
+                    textoResultado = "La cantidad de consultas especificada no fue correcta";
+                }
+                contadorLineas += 1;
+            }
+            testCasesCounter+= 1;
+        }
     }
 }
