@@ -5,8 +5,6 @@
  */
 package controlador;
 
-import org.junit.Test;
-
 /**
  *
  * @author Ing-0-0013
